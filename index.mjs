@@ -149,7 +149,7 @@ export const handler = async (event) => {
   msg += '</table>';
   
   const emailRecv = process.env.emailRec;
-  const emailSend = 'awsCostReport@lhn.com.sg';
+  const emailSend = process.env.emailSend;
   console.log('sendEmail', emailRecv, sbj, msg)
   await sendEmail(emailRecv, emailSend, sbj, msg);
   
