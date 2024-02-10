@@ -37,6 +37,8 @@ async function sendEmail(to, from, sbj, msg) {
 
 export const handler = async (event) => {
   
+  console.log('event', event)
+  
   const d1 = moment().subtract(1, 'days').startOf('month').format("YYYY-MM-DD");
   const d2 = moment().subtract(1, 'days').format("YYYY-MM-DD");
   const d3 = moment().format("YYYY-MM-DD");
@@ -107,10 +109,8 @@ export const handler = async (event) => {
     } 
   }
   
-  costSummary['total'] = totalCost.toFixed(2);
-  console.log('totalCost', totalCost)
-  costSummary['lastDay'] = lastDayCost.toFixed(2);
-  console.log('lastDayCost', lastDayCost)
+  costSummary['total'] = totalCost.toFixed(2); 
+  costSummary['lastDay'] = lastDayCost.toFixed(2); 
   
   dates.sort();
   dates.reverse();
@@ -148,8 +148,8 @@ export const handler = async (event) => {
   }
   msg += '</table>';
   
-  const emailRecv = process.env.emailRec
-  const emailSend = process.env.emailSend
+  const emailRecv = process.env.emailRec;
+  const emailSend = 'awsCostReport@lhn.com.sg';
   console.log('sendEmail', emailRecv, sbj, msg)
   await sendEmail(emailRecv, emailSend, sbj, msg);
   
